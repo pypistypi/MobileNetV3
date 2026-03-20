@@ -9,7 +9,7 @@ from s2_model_unet import EyeSegmentationModel
 BASE_DIR = 'datasets/big_dataset'
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 BATCH_SIZE = 4  # Уменьшил для стабильности, можно увеличить до 8 если памяти много
-EPOCHS = 50
+EPOCHS = 10
 
 
 # -----------------
@@ -58,10 +58,10 @@ class BigEyeDataset(Dataset):
         final_mask = np.zeros((256, 256), dtype=np.uint8)
 
         # ВАЖНО: Разделяем склеру и радужку по яркости в маске _i
-        # Склера (Класс 1) - обычно серый (~150-200)
-        final_mask[(mask_i > 140) & (mask_i < 210)] = 1
-        # Радужка (Класс 2) - обычно белый (>210)
-        final_mask[mask_i >= 210] = 2
+        # Склера (Класс 1) - Белый
+        final_mask[mask_i >= 200] = 1
+        # Радужка (Класс 2) - Серый
+        final_mask[(mask_i > 50) & (mask_i < 200)] = 2
         # Зрачок (Класс 3) - из маски _p
         mask_p_gray = cv2.cvtColor(mask_p, cv2.COLOR_BGR2GRAY)
         final_mask[mask_p_gray > 30] = 3
