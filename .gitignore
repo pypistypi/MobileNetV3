@@ -2,6 +2,7 @@
 __pycache__/
 *.pth
 *.pt
+*.mp4
 runs/
 datasets/
 output_results/
