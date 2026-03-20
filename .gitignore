@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pth
+*.pt
+runs/
+datasets/
+output_results/
+input_images/
+.idea/
