@@ -5,7 +5,7 @@ import numpy as np
 import torch
 from torch.utils.data import Dataset, DataLoader
 from pycocotools.coco import COCO
-from segmentation_model import EyeSegmentationModel
+from s2_model_unet import EyeSegmentationModel
 
 # --- НАСТРОЙКИ ---
 DATA_DIR = 'datasets/segmentation/images'
@@ -55,7 +55,7 @@ def fine_tune():
     loader = DataLoader(dataset, batch_size=BATCH_SIZE, shuffle=True)
 
     # 1. Создаем модель
-    model = EyeSegmentationModel(n_classes=3).to(DEVICE)
+    model = EyeSegmentationModel(n_classes=4).to(DEVICE)
 
     # 2. ЗАГРУЖАЕМ ПРЕДОБУЧЕННЫЕ ВЕСА
     print(f"Загрузка базовой модели из {PRETRAINED_PATH}...")
