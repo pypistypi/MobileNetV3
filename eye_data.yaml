@@ -1,0 +1,9 @@
+# Путь должен быть абсолютным или относительно корня проекта
+path: C:/Users/admin/PycharmProjects/MobileNetV3/datasets/eyes
+train: images/train
+val: images/val
+
+# Классы (метки), которые вы создавали в MakeSense
+names:
+  0: left_eye
+  1: right_eye
